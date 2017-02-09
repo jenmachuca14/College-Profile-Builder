@@ -10,18 +10,18 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
-
-
-    func configureView() {
-        // Update the user interface for the detail item.
-        if let detail = self.detailItem {
-            if let label = self.detailDescriptionLabel {
-                label.text = detail.description
-            }
+    @IBOutlet weak var collegeTextField: UITextField!
+    @IBOutlet weak var locationTextField: UITextField!
+    @IBOutlet weak var numberOfStudentsTextField: UITextField!
+    @IBOutlet weak var imageView: UIImageView!
+    var detailItem: College? {
+        didSet {
+            // Update the view.
+            self.configureView()
         }
     }
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -32,13 +32,32 @@ class DetailViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    var detailItem: NSDate? {
-        didSet {
-            // Update the view.
-            self.configureView()
+    func configureView() {
+        // Update the user interface for the detail item.
+        if let college = self.detailItem{
+            if collegeTextField != nil {
+                collegeTextField.text = college.name
+                locationTextField.text = college.location
+                numberOfStudentsTextField.text = String(college.numberOfStudents)
+                imageView.image = UIImage(data: college.image)
         }
+
     }
+}
+    
+    @IBAction func onTappedSaveButton(_ sender: UIButton) {
+        if let college = self.detailItem {
+            college.name = collegeTextField.text!
+            college.location = locationTextField.text!
+            college.numberOfStudents = Int(numberOfStudentsTextField.text!)!
+            college.image = UIImagePNGRepresentation(imageView.image!)!
+        }
+        
+    }
+
+
+
+ 
 
 
 }
