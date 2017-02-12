@@ -16,6 +16,10 @@
 		3F0C993C1E4A3C4600A8FDA4 /* College_Profile_BuliderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0C993B1E4A3C4600A8FDA4 /* College_Profile_BuliderTests.swift */; };
 		3F0C99471E4A3C4600A8FDA4 /* College_Profile_BuliderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0C99461E4A3C4600A8FDA4 /* College_Profile_BuliderUITests.swift */; };
 		3F0C99551E4A3D6E00A8FDA4 /* College.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F0C99541E4A3D6E00A8FDA4 /* College.swift */; };
+		3F21CF231E50053F0077ADDD /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F21CF201E5005100077ADDD /* RealmSwift.framework */; };
+		3F21CF241E50053F0077ADDD /* RealmSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3F21CF201E5005100077ADDD /* RealmSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3F21CF261E5005420077ADDD /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F21CF1C1E50050C0077ADDD /* Realm.framework */; };
+		3F21CF271E5005420077ADDD /* Realm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3F21CF1C1E50050C0077ADDD /* Realm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +39,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3F21CF251E50053F0077ADDD /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3F21CF271E5005420077ADDD /* Realm.framework in Embed Frameworks */,
+				3F21CF241E50053F0077ADDD /* RealmSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		3F0C99211E4A3C4500A8FDA4 /* College Profile Bulider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "College Profile Bulider.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F0C99241E4A3C4500A8FDA4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +70,8 @@
 		3F0C99461E4A3C4600A8FDA4 /* College_Profile_BuliderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = College_Profile_BuliderUITests.swift; sourceTree = "<group>"; };
 		3F0C99481E4A3C4600A8FDA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3F0C99541E4A3D6E00A8FDA4 /* College.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = College.swift; sourceTree = "<group>"; };
+		3F21CF1C1E50050C0077ADDD /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Realm.framework; sourceTree = "<group>"; };
+		3F21CF201E5005100077ADDD /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +79,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F21CF261E5005420077ADDD /* Realm.framework in Frameworks */,
+				3F21CF231E50053F0077ADDD /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +104,8 @@
 		3F0C99181E4A3C4500A8FDA4 = {
 			isa = PBXGroup;
 			children = (
+				3F21CF201E5005100077ADDD /* RealmSwift.framework */,
+				3F21CF1C1E50050C0077ADDD /* Realm.framework */,
 				3F0C99231E4A3C4500A8FDA4 /* College Profile Bulider */,
 				3F0C993A1E4A3C4600A8FDA4 /* College Profile BuliderTests */,
 				3F0C99451E4A3C4600A8FDA4 /* College Profile BuliderUITests */,
@@ -141,6 +166,7 @@
 				3F0C991D1E4A3C4500A8FDA4 /* Sources */,
 				3F0C991E1E4A3C4500A8FDA4 /* Frameworks */,
 				3F0C991F1E4A3C4500A8FDA4 /* Resources */,
+				3F21CF251E50053F0077ADDD /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -420,6 +446,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "College Profile Bulider/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "JM.College-Profile-Bulider";
@@ -432,6 +462,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "College Profile Bulider/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "JM.College-Profile-Bulider";
@@ -513,6 +547,7 @@
 				3F0C994D1E4A3C4600A8FDA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3F0C994E1E4A3C4600A8FDA4 /* Build configuration list for PBXNativeTarget "College Profile BuliderTests" */ = {
 			isa = XCConfigurationList;
@@ -521,6 +556,7 @@
 				3F0C99501E4A3C4600A8FDA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3F0C99511E4A3C4600A8FDA4 /* Build configuration list for PBXNativeTarget "College Profile BuliderUITests" */ = {
 			isa = XCConfigurationList;
@@ -529,6 +565,7 @@
 				3F0C99531E4A3C4600A8FDA4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
