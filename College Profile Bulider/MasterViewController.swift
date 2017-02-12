@@ -30,6 +30,7 @@ class MasterViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.clearsSelectionOnViewWillAppear = self.splitViewController!.isCollapsed
         super.viewWillAppear(animated)
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,17 +39,46 @@ class MasterViewController: UITableViewController {
     }
 
     func insertNewObject(_ sender: Any) {
-        objects.insert(NSDate(), at: 0)
-        let indexPath = IndexPath(row: 0, section: 0)
-        self.tableView.insertRows(at: [indexPath], with: .automatic)
+            let alert = UIAlertController(title: "Add College", message: nil, preferredStyle: .alert)
+        alert.addTextField{  (textField) in
+            textField.placeholder = "College"
     }
+        alert.addTextField{  (textField) in
+            textField.placeholder = "Location"
+    }
+        alert.addTextField{  (textField) in
+            textField.placeholder = "Number of Students"
+            textField.keyboardType = UIKeyboardType.numberPad
+    }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alert.addAction(cancelAction)
+        let insertAction = UIAlertAction(title: "Add", style: .default) { (action) in
+            let collegeTextField = alert.textFields![0] as UITextField
+            let locationTextField = alert.textFields![1] as UITextField
+            let numberOfStudentsTextField = alert.textFields![2] as UITextField
+            guard let image = UIImage(named: collegeTextField.text!) else {
+                print ("missing \(collegeTextField.text!) image")
+                return
+            }
+           if let numberOfStudents = Int(numberOfStudentsTextField.text!) {
+            let college = College (name: collegeTextField.text!, location: locationTextField.text!, numberOfStudents:numberOfStudents, image: UIImagePNGRepresentation(image)!)
+                    self.objects.append(college)
+            }
+            self.tableView.reloadData()
+        
+        }
+            alert.addAction(insertAction)
+            present(alert,animated: true, completion: nil)
+
+    }
+
 
     // MARK: - Segues
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             if let indexPath = self.tableView.indexPathForSelectedRow {
-                let object = objects[indexPath.row] as! NSDate
+                let object = objects[indexPath.row] as! College
                 let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem
@@ -70,8 +100,8 @@ class MasterViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
 
-        let object = objects[indexPath.row] as! NSDate
-        cell.textLabel!.text = object.description
+        let object = objects[indexPath.row] as! College
+        cell.textLabel!.text = object.name
         return cell
     }
 
@@ -82,12 +112,12 @@ class MasterViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            objects.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+            let college  = objects.remove(at: indexPath.row) as! College
+            //try! self.realm.delete(college)
         }
     }
+
+
 
 
 }
